@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='style.css'>
+    <title>Our Special Day</title>
+    <style>
+        /* Gaya untuk body dengan background image */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background: url('zidan1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header untuk judul dan countdown */
+        header {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparan hitam */
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Selalu berada di atas konten lainnya */
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar elemen */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-align: center; /* Pastikan teks berada di tengah */
+        }
+
+        #countdown {
+            color: #f5f5f5;
+            font-size: 2em;
+            margin-top: 10px;
+        }
+
+        /* Margin top untuk memberi ruang pada header tetap */
+        main {
+            margin-top: 120px; /* Sesuaikan dengan tinggi header */
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Album foto */
+        #album {
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparan hitam */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #ff6f61;
+            margin-bottom: 50px;
+        } 
+
+        h3 {
+            font-family: 'Roboto', sans-serif;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+
+        /* Galeri foto */
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        #gallery img {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Batasi tinggi gambar */
+            border-radius: 10px;
+            object-fit: cover; /* Memastikan gambar tidak melar dan tetap proporsional */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        #gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Special Day</h1>
+        <div id="countdown"></div>
+    </header>
+
+    <main>
+        <section id="album">
+            <h2>Kenangan Bersama</h2>
+            <h3>Pesaki ❤️💙</h3>
+            <div id="gallery">
+                <img src="chika1.jpg" alt="Memory 1">
+                <img src="chika2.jpg" alt="Memory 2">
+                <img src="chika3.jpg" alt="Memory 3">
+                <img src="chika4.jpg" alt="Memory 4">
+                <!-- Tambahkan lebih banyak gambar sesuai keinginan -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with ❤️ </p>
+    </footer>
+
+    <script>
+        // Sesuaikan dengan tanggal anniversary Anda
+        const targetDate = new Date('2025-03-29T00:00:00');
+
+        // Fungsi untuk memperbarui hitung mundur
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Tampilkan hitung mundur di elemen dengan id 'countdown'
+                document.getElementById('countdown').innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                // Jika waktu sudah lewat, tampilkan pesan selamat anniversary
+                document.getElementById('countdown').innerHTML = 'Happy Anniversary!';
+            }
+        }
+
+        // Memperbarui hitung mundur setiap detik
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
